@@ -12,6 +12,8 @@ wget -O /etc/systemd/system/ws-dropbear.service https://raw.githubusercontent.co
 wget -O /etc/systemd/system/ws-stunnel.service https://raw.githubusercontent.com/taibabi/gatau/main/FILE/WEBSOCKET/ws-stunnel.service && chmod +x /etc/systemd/system/ws-stunnel.service
 wget -O /etc/systemd/system/ws-ovpn.service https://raw.githubusercontent.com/taibabi/gatau/main/FILE/OPENVPN/ws-ovpn.service && chmod +x /etc/systemd/system/ws-ovpn.service
 
+chmod 644 /etc/systemd/system/ws-*
+
 systemctl daemon-reload
 systemctl enable ws-dropbear.service
 systemctl start ws-dropbear.service

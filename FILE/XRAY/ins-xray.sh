@@ -168,7 +168,7 @@ cat > /etc/xray/config.json << END
        "streamSettings":{
            "network": "ws",
            "wsSettings": {
-               "path": "/onexd"
+               "path": "/trojan-ws"
             }
          }
      },
@@ -355,7 +355,8 @@ After=network.target nss-lookup.target
 
 [Service]
 User=www-data
-CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE                                 AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
+CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
+AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
 NoNewPrivileges=true
 ExecStart=/usr/local/bin/xray run -config /etc/xray/config.json
 Restart=on-failure
@@ -438,9 +439,9 @@ sed -i '$ i     }' /etc/nginx/conf.d/xray.conf
 sed -i '$ i' /etc/nginx/conf.d/xray.conf
 sed -i '$ i# Important:' /etc/nginx/conf.d/xray.conf
 sed -i '$ i# This is the proxy Xray For Trojan Servers' /etc/nginx/conf.d/xray.conf
-sed -i '$ ilocation /dendikusnandi {' /etc/nginx/conf.d/xray.conf
+sed -i '$ ilocation /trojan-ws {' /etc/nginx/conf.d/xray.conf
 sed -i '$ iif ($http_upgrade != "Upgrade") {' /etc/nginx/conf.d/xray.conf
-sed -i '$ irewrite /(.*) /dendikusnandi break;' /etc/nginx/conf.d/xray.conf
+sed -i '$ irewrite /(.*) /trojan-ws break;' /etc/nginx/conf.d/xray.conf
 sed -i '$ i     }' /etc/nginx/conf.d/xray.conf
 sed -i '$ iproxy_redirect off;' /etc/nginx/conf.d/xray.conf
 sed -i '$ iproxy_pass http://127.0.0.1:10003;' /etc/nginx/conf.d/xray.conf
@@ -533,7 +534,7 @@ sed -i '$ i     }' /etc/nginx/conf.d/xray.conf
 
 sleep 1
 echo -e "[ ${green}INFO$NC ] Installing bbr.."
-wget -q -O /usr/bin/bbr "https://raw.githubusercontent.com/dendikusnandi/derista/main/FILE/SSH/bbr.sh"
+wget -q -O /usr/bin/bbr "https://raw.githubusercontent.com/taibabi/gatau/main/FILE/SSH/bbr.sh"
 chmod +x /usr/bin/bbr
 bbr >/dev/null 2>&1
 rm /usr/bin/bbr >/dev/null 2>&1
@@ -548,8 +549,8 @@ systemctl enable runn
 systemctl restart runn
 
 sleep 1
-wget -q -O /usr/bin/auto-set "https://raw.githubusercontent.com/dendikusnandi/derista/main/FILE/XRAY/auto-set.sh" && chmod +x /usr/bin/auto-set 
-wget -q -O /usr/bin/crtxray "https://raw.githubusercontent.com/dendikusnandi/derista/main/FILE/XRAY/crt.sh" && chmod +x /usr/bin/crtxray 
+wget -q -O /usr/bin/auto-set "https://raw.githubusercontent.com/taibabi/gatau/main/FILE/XRAY/auto-set.sh" && chmod +x /usr/bin/auto-set 
+wget -q -O /usr/bin/crtxray "https://raw.githubusercontent.com/taibabi/gatau/main/FILE/XRAY/crt.sh" && chmod +x /usr/bin/crtxray 
 sleep 1
 yellow() { echo -e "\\033[33;1m${*}\\033[0m"; }
 yellow "xray/Vmess"
