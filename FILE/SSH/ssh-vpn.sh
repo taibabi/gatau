@@ -18,7 +18,7 @@ commonname=Onexd
 email=sadewaaja70@gmail.com
 
 # simple password minimal
-curl -sS https://raw.githubusercontent.com/onexd77/mantan/main/FILE/SSH/password | openssl aes-256-cbc -d -a -pass pass:scvps07gg -pbkdf2 > /etc/pam.d/common-password
+curl -sS https://raw.githubusercontent.com/taibabi/gatau/main/FILE/SSH/password | openssl aes-256-cbc -d -a -pass pass:scvps07gg -pbkdf2 > /etc/pam.d/common-password
 chmod +x /etc/pam.d/common-password
 
 # go to root
@@ -127,9 +127,9 @@ apt -y install nginx
 cd
 rm /etc/nginx/sites-enabled/default
 rm /etc/nginx/sites-available/default
-wget -O /etc/nginx/nginx.conf "https://raw.githubusercontent.com/onexd77/mantan/main/FILE/SSH/nginx.conf"
+wget -O /etc/nginx/nginx.conf "https://raw.githubusercontent.com/taibabi/gatau/main/FILE/SSH/nginx.conf"
 rm /etc/nginx/conf.d/vps.conf
-wget -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/onexd77/mantan/main/FILE/SSH/vps.conf"
+wget -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/taibabi/gatau/main/FILE/SSH/vps.conf"
 /etc/init.d/nginx restart
 
 mkdir /etc/systemd/system/nginx.service.d
@@ -140,12 +140,12 @@ service nginx restart
 cd
 mkdir /home/vps
 mkdir /home/vps/public_html
-wget -O /home/vps/public_html/index.html "https://raw.githubusercontent.com/onexd77/mantan/main/FILE/SSH/index"
+wget -O /home/vps/public_html/index.html "https://raw.githubusercontent.com/taibabi/gatau/main/FILE/SSH/index"
 mkdir /home/vps/public_html/ss-ws
 mkdir /home/vps/public_html/clash-ws
 # install badvpn
 cd
-wget -O /usr/bin/badvpn-udpgw "https://raw.githubusercontent.com/onexd77/mantan/main/FILE/SSH/newudpgw"
+wget -O /usr/bin/badvpn-udpgw "https://raw.githubusercontent.com/taibabi/gatau/main/FILE/SSH/newudpgw"
 chmod +x /usr/bin/badvpn-udpgw
 sed -i '$ i\screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7100 --max-clients 500' /etc/rc.local
 sed -i '$ i\screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 --max-clients 500' /etc/rc.local
@@ -186,7 +186,7 @@ echo "/usr/sbin/nologin" >> /etc/shells
 # install squid
 cd
 apt -y install squid3
-wget -O /etc/squid/squid.conf "https://raw.githubusercontent.com/onexd77/mantan/main/FILE/OPENVPN/squid3.conf"
+wget -O /etc/squid/squid.conf "https://raw.githubusercontent.com/taibabi/gatau/main/FILE/OPENVPN/squid3.conf"
 sed -i $MYIP2 /etc/squid/squid.conf
 
 cd
@@ -228,7 +228,7 @@ sed -i 's/ENABLED=0/ENABLED=1/g' /etc/default/stunnel4
 /etc/init.d/stunnel4 restart
 
 #OpenVPN
-wget https://raw.githubusercontent.com/onexd77/mantan/main/FILE/OPENVPN/vpn.sh &&  chmod +x vpn.sh && ./vpn.sh
+wget https://raw.githubusercontent.com/taibabi/gatau/main/FILE/OPENVPN/vpn.sh &&  chmod +x vpn.sh && ./vpn.sh
 
 # install fail2ban
 apt -y install fail2ban
@@ -263,16 +263,16 @@ echo 'Please send in your comments and/or suggestions to zaf@vsnl.com'
 # banner /etc/issue.net
 sleep 1
 echo -e "[ ${green}INFO$NC ] Settings banner"
-wget -q -O /etc/issue.net "https://raw.githubusercontent.com/onexd77/mantan/main/FILE/issue.net"
+wget -q -O /etc/issue.net "https://raw.githubusercontent.com/taibabi/gatau/main/FILE/issue.net"
 chmod +x /etc/issue.net
 echo "Banner /etc/issue.net" >> /etc/ssh/sshd_config
 sed -i 's@DROPBEAR_BANNER=""@DROPBEAR_BANNER="/etc/issue.net"@g' /etc/default/dropbear
 
 # download script
 cd /usr/bin
-wget -O speedtest "https://raw.githubusercontent.com/onexd77/mantan/main/FILE/SSH/speedtest_cli.py"
-wget -O xp "https://raw.githubusercontent.com/onexd77/mantan/main/FILE/SSH/xp.sh"
-wget -O auto-set "https://raw.githubusercontent.com/onexd77/mantan/main/FILE/XRAY/auto-set.sh"
+wget -O speedtest "https://raw.githubusercontent.com/taibabi/gatau/main/FILE/SSH/speedtest_cli.py"
+wget -O xp "https://raw.githubusercontent.com/taibabi/gatau/main/FILE/SSH/xp.sh"
+wget -O auto-set "https://raw.githubusercontent.com/taibabi/gatau/main/FILE/XRAY/auto-set.sh"
 chmod +x speedtest
 chmod +x xp
 chmod +x auto-set
