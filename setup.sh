@@ -24,6 +24,9 @@ if [ "$(systemd-detect-virt)" == "openvz" ]; then
 		exit 1
 fi
 
+sudo apt-get autoremove -y ;
+sudo apt-purge git man-db apache2 ufw exim4 firewalld snapd* -y;
+
 localip=$(hostname -I | cut -d\  -f1)
 hst=( `hostname` )
 dart=$(cat /etc/hosts | grep -w `hostname` | awk '{print $2}')
